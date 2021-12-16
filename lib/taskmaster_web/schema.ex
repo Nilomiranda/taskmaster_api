@@ -1,14 +1,9 @@
 defmodule TaskmasterWeb.Schema do
   use Absinthe.Schema
 
-  alias TaskmasterWeb.UserResolver
-
-  import_types TaskmasterWeb.Schema.User
+  import_types TaskmasterWeb.Query.User
 
   query do
-    @desc "Get all users"
-    field :users, non_null(list_of(non_null(:user))) do
-      resolve(&UserResolver.users/3)
-    end
+    import_fields :user_queries
   end
 end
