@@ -3,11 +3,7 @@ defmodule TaskmasterWeb.Schema do
 
   alias TaskmasterWeb.UserResolver
 
-  object :user do
-    field :id, non_null(:id)
-    field :name, non_null(:string)
-    field :email, non_null(:string)
-  end
+  import_types TaskmasterWeb.Schema.User
 
   query do
     @desc "Get all users"
