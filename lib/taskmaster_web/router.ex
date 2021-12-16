@@ -5,8 +5,13 @@ defmodule TaskmasterWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", TaskmasterWeb do
+  scope "/" do
     pipe_through :api
+
+    forward "graphql", Absinthe.Plug.GraphiQL,
+      schema: TaskmasterWeb.Schema,
+      interface: :simple,
+      context: %{pubsub: TaskmasterWeb.Endpoint}
   end
 
   # Enables LiveDashboard only for development
