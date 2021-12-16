@@ -1,9 +1,7 @@
-defmodule TaskmasterWeb.Query.User do
+defmodule TaskmasterWeb.Queries.User do
   use Absinthe.Schema.Notation
 
   alias TaskmasterWeb.UserResolver
-
-  import_types TaskmasterWeb.Schema.User
 
   object :user_queries do
     @desc "Get all users"
