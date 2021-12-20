@@ -50,9 +50,13 @@ defmodule Taskmaster.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
-    %User{}
+    case %User{}
     |> User.changeset(attrs)
-    |> Repo.insert()
+    |> Repo.insert() do
+      {:ok, %User{} = user} -> user
+      {:error, %Ecto.Changeset{} = changeset} -> changeset
+    end
+
   end
 
   @doc """
