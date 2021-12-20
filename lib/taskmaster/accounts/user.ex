@@ -19,6 +19,7 @@ defmodule Taskmaster.Accounts.User do
     |> cast(attrs, [:name, :email, :password])
     |> create_hashed_password()
     |> validate_required([:name, :email, :password])
+    |> unique_constraint(:email, name: :user_email_unique)
   end
 
   defp create_hashed_password(%Changeset{valid?: true, changes: %{ password: password } } = user) do
